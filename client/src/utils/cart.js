@@ -21,7 +21,7 @@ export const addToCart = (product) => {
       image: product.image,
       quantity: 1,
 
-      // ✅ VERY IMPORTANT
+      //
       vendor: product.vendor?._id || product.vendor
     });
   }

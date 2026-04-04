@@ -51,7 +51,7 @@ export default function Login() {
         confirmButtonColor: "#6366f1"
       });
 
-      navigate("/");
+      window.location.href = "/";
 
     } catch (err) {
 

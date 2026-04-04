@@ -17,59 +17,87 @@ export default function Checkout(){
     (sum,i)=> sum + (i.price * (i.quantity || 1)), 0
   );
 
-  const placeOrder=async()=>{
+  const handlePayment = async () => {
 
-    if(items.length===0){
+    if(items.length === 0){
       Swal.fire({
         icon:"warning",
         title:"Your cart is empty",
         background:"#0f172a",
-        color:"#fff",
-        confirmButtonColor:"#6366f1"
+        color:"#fff"
       });
       return;
     }
 
     try{
 
-      
-      const formattedItems = items.map(item => ({
-        product: item._id,
-        vendor: item.vendor?._id || item.vendor,   
-        title: item.title,
-        price: item.price,
-        quantity: item.quantity || 1,
-        image: item.image
-      }));
-
-      await API.post("/orders",{
-        items: formattedItems,
-        total
+      // Create Razorpay Order (backend)
+      const { data } = await API.post("/payment/create-order", {
+        amount: total
       });
 
-      localStorage.removeItem("cart");
+      // Open Razorpay
+      const options = {
+        key: "rzp_test_SZQXDvhuvKa2Xk", // test key
+        amount: data.amount,
+        currency: "INR",
+        name: "Marketplace",
+        description: "Order Payment",
+        order_id: data.id,
 
-      await Swal.fire({
-        icon:"success",
-        title:"Order placed successfully 🎉",
-        text:"Thank you for your purchase!",
-        background:"#0f172a",
-        color:"#fff",
-        confirmButtonColor:"#6366f1"
-      });
+        handler: async function (response) {
 
-      navigate("/");
+          try {
 
-    }catch(err){
+            // Format items 
+            const formattedItems = items.map(item => ({
+              product: item._id,
+              vendor: item.vendor?._id || item.vendor,
+              title: item.title,
+              price: item.price,
+              quantity: item.quantity || 1,
+              image: item.image
+            }));
 
-      console.log("Checkout error:", err?.response?.data || err.message);
+            // Save order AFTER payment
+            await API.post("/orders", {
+              items: formattedItems,
+              total
+            });
+
+            localStorage.removeItem("cart");
+
+            await Swal.fire({
+              icon:"success",
+              title:"Payment successful 🎉",
+              text:"Order placed successfully!",
+              background:"#0f172a",
+              color:"#fff"
+            });
+
+            navigate("/");
+
+          } catch (err) {
+            console.log("Order save error:", err);
+          }
+        },
+
+        theme: {
+          color: "#6366f1"
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+
+    } catch(err){
+      console.log("Payment error:", err);
 
       Swal.fire({
         icon:"error",
-        title:"Checkout failed",
+        title:"Payment failed",
         background:"#0f172a",
-        color:"#fff",
-        confirmButtonColor:"#ef4444"
+        color:"#fff"
       });
     }
   };
@@ -93,9 +121,9 @@ export default function Checkout(){
 
       <button
         style={{marginTop:20}}
-        onClick={placeOrder}
+        onClick={handlePayment}
       >
-        Place Order
+        Pay Now 💳
       </button>
 
     </div>
