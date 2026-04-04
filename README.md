@@ -16,6 +16,7 @@ Frontend:
 - Axios
 - SweetAlert2
 - Framer Motion
+- deployed link: https://market-place-git-main-suhas-s-projects-49b9ecc3.vercel.app/login
 
 Backend:
 - Node.js
@@ -23,6 +24,7 @@ Backend:
 - MongoDB Atlas
 - JWT Authentication
 - Multer (Image Upload)
+- deployed link: https://market-place-5ruh.onrender.com/
 
 ---
 
