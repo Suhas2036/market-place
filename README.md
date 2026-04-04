@@ -43,8 +43,7 @@ cd server
 npm install  
 
 Create `.env` file:
-MONGO_URI=mongodb+srv://suhaspriyam_db_user:mongo12345@cluster0.oqusgwu.mongodb.net/marketplace?retryWrites=true&w=majority
-JWT_SECRET=supersecretkey
+
 
 
 
