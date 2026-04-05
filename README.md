@@ -1,70 +1,149 @@
-#  MERN Multi-Vendor Marketplace
+# MERN Multi-Vendor Marketplace
 
-A full-stack MERN application where:
-
-- Vendors can create and manage products
-- Customers can browse and purchase products
-- Vendors can track revenue per order
-- Role-based authentication (Customer / Vendor)
+A full-stack **MERN Marketplace application** where multiple vendors can sell products and customers can browse, purchase, and track orders.
 
 ---
 
+## 🚀 Live Demo
 
-
-Frontend:
-- React (Vite)
-- Axios
-- SweetAlert2
-- Framer Motion
-
-Backend:
-- Node.js
-- Express.js
-- MongoDB Atlas
-- JWT Authentication
-- Multer (Image Upload)
+* 🌐 Frontend: https://market-place-git-main-suhas-s-projects-49b9ecc3.vercel.app
+* ⚙️ Backend API: https://market-place-5ruh.onrender.com
 
 ---
 
-## Project Structure
+## ✨ Features
 
-root/
-│
-├── client/   → Frontend (React)
-└── server/   → Backend (Express + MongoDB)
+### Authentication & Roles
+
+* JWT-based authentication
+* Role-based access:
+
+  * **Customer**
+  * **Vendor**
+  * **Admin**
 
 ---
 
-## How to Run Locally
+### Customer Features
 
-### Backend
+* Browse products
+* Filter by categories
+* Add to cart
+* Checkout & place orders
+* Razorpay payment integration (Test Mode)
+* View order history
 
-cd server  
-npm install  
+---
 
-Create `.env` file:
+### Vendor Features
 
+* Add new products (with image upload)
+* Manage products
+* View vendor-specific orders
+* Track revenue per order
 
+---
 
+### Admin Features
 
+* Dashboard with:
+
+  * Total users
+  * Total products
+  * Total orders
+* Restricted access (admin-only routes)
+
+---
+
+### Payments
+
+* Integrated with **Razorpay**
+* Supports:
+
+  * Test payments
+  * Checkout flow
+* Payment verification handled on backend
+
+---
+
+### Image Upload
+
+* Implemented using **Multer**
+* Images served via backend (`/uploads`)
+* Note: Uses local storage (not persistent on Render)
+
+---
+
+## Tech Stack
 
 ### Frontend
 
-cd client  
-npm install  
-npm run dev
+* React (Vite)
+* Axios
+* React Router
+* SweetAlert2
+* Framer Motion
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* JWT Authentication
+* Multer
+* Razorpay SDK
 
 ---
 
-## Roles
+## 📁 Project Structure
 
-Customer:
-- Browse products
-- Add to cart
-- Place orders
+```
+root/
+│
+├── client/        # React frontend
+│
+└── server/        # Express backend
+```
 
-Vendor:
-- Create products
-- View vendor orders
-- Track revenue
-- Update order status
+
+##  Deployment
+
+* **Frontend**: Vercel
+* **Backend**: Render
+* **Database**: MongoDB Atlas
+
+---
+
+## ⚠️ Known Limitations
+
+* Uploaded images are stored locally → **not persistent on Render**
+* No cloud storage (yet)
+
+---
+
+## Future Improvements
+
+* Cloudinary integration (for image storage)
+* Order tracking system
+* Admin analytics dashboard
+* Product reviews & ratings
+* Search & filtering improvements
+
+---
+
+## Key Learnings
+
+* Full-stack MERN architecture
+* Role-based authentication & authorization
+* Payment gateway integration (Razorpay)
+* Deployment (Vercel + Render)
+* Debugging real-world production issues
+
+---
+
+## Author
+
+**Suhas**
+
+---
+
