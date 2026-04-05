@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const router = require("express").Router();
 const auth = require("../middleware/auth");
 
-/* ⭐ multer upload */
+/* multer upload */
 const multer = require("multer");
 
 const storage = multer.diskStorage({

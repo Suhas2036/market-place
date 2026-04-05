@@ -50,13 +50,13 @@ export default function Home(){
       <h1 style={{marginBottom:30}}>Marketplace </h1>
 
       <select
-        onChange={e=>setCategoryFilter(e.target.value)}
-        style={{marginBottom:30}}
-      >
-        <option value="">All Categories</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Fashion">Fashion</option>
-        <option value="Other">Other</option>
+       value={categoryFilter}
+       onChange={(e) => setCategoryFilter(e.target.value)}
+       style={{ marginBottom: 30 }}>
+      <option value="">All Categories</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Other">Other</option>
       </select>
 
       <div style={{
