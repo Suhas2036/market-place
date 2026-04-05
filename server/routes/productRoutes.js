@@ -4,17 +4,18 @@ const auth = require("../middleware/auth");
 
 /* multer upload */
 const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
-const storage = multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null,"uploads/");
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "products",
+    allowed_formats: ["jpg", "png", "jpeg"],
   },
-  filename:(req,file,cb)=>{
-    cb(null,Date.now()+"-"+file.originalname);
-  }
 });
 
-const upload = multer({storage});
+const upload = multer({ storage });
 
 
 /* ================= GET ALL PRODUCTS ================= */
@@ -41,7 +42,7 @@ router.post(
         category:req.body.category,
         description:req.body.description,
         vendor:req.user.id,
-        image:req.file ? req.file.filename : null
+        image: req.file ? req.file.path : null
       });
 
       res.json(product);

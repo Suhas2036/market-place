@@ -72,7 +72,7 @@ export default function Home(){
 
             {p.image && (
               <img
-                src={`https://market-place-5ruh.onrender.com/uploads/${p.image}`}
+                src={p.image}
                 style={{
                   width:"100%",
                   height:180,

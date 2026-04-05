@@ -41,7 +41,7 @@ export default function Cart(){
 
                 {p.image && (
                   <img
-                    src={`https://market-place-5ruh.onrender.com/uploads/${p.image}`}
+                    src={p.image}
                     style={{width:150,borderRadius:10}}
                   />
                 )}
